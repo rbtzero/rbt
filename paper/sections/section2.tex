@@ -1,4 +1,14 @@
 \section{Foundational Axioms}
 \label{sec:axioms}
 % TODO: core axioms of RBT.
+RBT is built on four irreducible axioms:
+
+\begin{enumerate}
+  \item \textbf{Irreversible Seed.}  A single bit transition from 0\,$\to$\,1 occurs at $t=0$.  The transition is logically irreversible and therefore unrecordable \emph{within} the pre-existing state.
+  \item \textbf{Self-Counting Ledger.}  The universe consists of an ordered list of binary strings $S_t$ whose $(t+1)$-st element is the binary encoding of the length of $S_t$.  That is, $S_{t+1} = \text{bin\_enc}(|S_t|)$ concatenated to $S_t$.
+  \item \textbf{No External Reference.}  All observables and laws must be expressible as relations internal to $S_t$; no appeal to external clocks, rulers, or parameter values is permitted.
+  \item \textbf{Local Consistency.}  Any algebraic rule inferred from a finite prefix of the ledger must remain valid when applied to all future extensions.  This enforces a form of causal locality reminiscent of Conway's "no irreversible inference" principle.
+\end{enumerate}
+
+In the sequel we demonstrate how these axioms imply energy–momentum conservation, Lorentz symmetry, and gauge invariance to leading order in a coarse-grained expansion.
 \clearpage 
