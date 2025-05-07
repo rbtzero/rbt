@@ -14,10 +14,10 @@ jobs:
           scheme-full
           latexmk
           biber
-    - name: Compile PDF
+    - name: Compile PDF using XeLaTeX
       run: |
         cd paper
-        latexmk -pdf -quiet main.tex
+        latexmk -xelatex -quiet main.tex
     - name: Upload PDF
       uses: actions/upload-artifact@v3
       with:
