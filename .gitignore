@@ -14,3 +14,11 @@ __pycache__/
 __MACOSX/
 Toe.zip
 toe_src.zip
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+figs/
+data/raw_snapshots/

@@ -1,0 +1,22 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,physics}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[backend=biber,style=authoryear-comp,sorting=nyt]{biblatex}
+\addbibresource{../biblio/references.bib}
+
+\title{Recursive Becoming: From Nothingness to Everything}
+\author{Chetan Chauhan}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\input{sections/section0.tex}
+\tableofcontents
+\clearpage
+\foreach \i in {1,...,17}{\input{sections/section\i.tex}}
+
+\printbibliography
+\end{document} 

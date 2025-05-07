@@ -1,0 +1,37 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up TeX Live
+      uses: teatimeguest/setup-texlive-action@v2
+      with:
+        packages: >-
+          scheme-small
+          latexmk
+          biber
+    - name: Compile PDF
+      run: |
+        cd paper
+        latexmk -pdf -bibtex -quiet main.tex
+    - name: Upload PDF
+      uses: actions/upload-artifact@v3
+      with:
+        name: rbt-paper
+        path: paper/main.pdf
+
+  notebooks:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - name: Install deps
+      run: pip install nbmake matplotlib numpy
+    - name: Re-run notebooks
+      run: pytest --nbmake notebooks/ 
