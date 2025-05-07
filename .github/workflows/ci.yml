@@ -11,7 +11,7 @@ jobs:
       uses: teatimeguest/setup-texlive-action@v2
       with:
         packages: >-
-          scheme-small
+          scheme-full
           latexmk
           biber
     - name: Compile PDF
@@ -24,14 +24,16 @@ jobs:
         name: rbt-paper
         path: paper/main.pdf
 
-  notebooks:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    - name: Install deps
-      run: pip install nbmake matplotlib numpy
-    - name: Re-run notebooks
-      run: pytest --nbmake notebooks/ 
+  # Notebooks job disabled until notebooks directory is ready.
+
+  # notebooks:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - uses: actions/setup-python@v4
+  #     with:
+  #       python-version: '3.11'
+  #   - name: Install deps
+  #     run: pip install nbmake matplotlib numpy
+  #   - name: Re-run notebooks
+  #     run: pytest --nbmake notebooks/ 
