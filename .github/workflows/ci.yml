@@ -1,0 +1,56 @@
+name: build
+
+on: [push, pull_request]
+
+jobs:
+  latex:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install TeX Live via apt
+      run: |
+        sudo apt-get update -y
+        sudo apt-get install -y texlive-full biber
+    - name: Compile PDF (capture log)
+      id: build_pdf
+      continue-on-error: true
+      run: |
+        cd paper
+        timeout 300 latexmk -pdf -file-line-error -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tee ../build.log
+
+    - name: Show tail of build log on failure
+      if: steps.build_pdf.outcome == 'failure'
+      run: |
+        echo "--- build.log (last 200 lines) ---"
+        tail -n 200 build.log || true
+
+    - name: Upload build log
+      uses: actions/upload-artifact@v4
+      with:
+        name: latex-build-log
+        path: build.log
+
+    - name: Upload PDF
+      if: steps.build_pdf.outcome == 'success'
+      uses: actions/upload-artifact@v4
+      with:
+        name: rbt-paper
+        path: paper/main.pdf
+
+    - name: Fail job if LaTeX failed
+      if: steps.build_pdf.outcome == 'failure'
+      run: exit 1
+
+  # Notebooks job disabled until notebooks directory is ready.
+
+  # notebooks:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - uses: actions/setup-python@v4
+  #     with:
+  #       python-version: '3.11'
+  #   - name: Install deps
+  #     run: pip install nbmake matplotlib numpy
+  #   - name: Re-run notebooks
+  #     run: pytest --nbmake notebooks/ 
