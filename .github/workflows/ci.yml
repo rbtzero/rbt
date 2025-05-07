@@ -16,7 +16,8 @@ jobs:
           biber
     - name: Compile PDF using XeLaTeX
       run: |
-        latexmk -xelatex -quiet -output-directory=paper paper/main.tex
+        cd paper
+        latexmk -xelatex -quiet main.tex
     - name: Upload PDF
       uses: actions/upload-artifact@v3
       with:
