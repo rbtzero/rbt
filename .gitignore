@@ -20,5 +20,4 @@ toe_src.zip
 *.log
 *.out
 *.synctex.gz
-figs/
 data/raw_snapshots/
