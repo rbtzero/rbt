@@ -15,14 +15,33 @@ jobs:
           latexmk
           biber
     - name: Compile PDF using XeLaTeX
+      id: build_pdf
+      continue-on-error: true
       run: |
         cd paper
-        latexmk -xelatex -quiet main.tex
+        latexmk -xelatex -file-line-error -interaction=nonstopmode main.tex
+
+    - name: Show LaTeX log on failure
+      if: steps.build_pdf.outcome == 'failure'
+      run: cat paper/main.log || true
+
+    - name: Upload LaTeX log
+      if: steps.build_pdf.outcome == 'failure'
+      uses: actions/upload-artifact@v3
+      with:
+        name: latex-log
+        path: paper/main.log
+
     - name: Upload PDF
+      if: steps.build_pdf.outcome == 'success'
       uses: actions/upload-artifact@v3
       with:
         name: rbt-paper
         path: paper/main.pdf
+
+    - name: Fail job if LaTeX failed
+      if: steps.build_pdf.outcome == 'failure'
+      run: exit 1
 
   # Notebooks job disabled until notebooks directory is ready.
 
