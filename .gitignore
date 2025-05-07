@@ -1,0 +1,16 @@
+check_*.npz
+ckpt_*.h5
+freeze_out/
+*.npy
+*.npz
+*.h5
+__pycache__/
+*.pyc
+.snake*
+.hypothesis/
+*.egg-info/
+*.DS_Store
+.ipynb_checkpoints/
+__MACOSX/
+Toe.zip
+toe_src.zip
