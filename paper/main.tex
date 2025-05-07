@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[a4paper,margin=1in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,physics}
-\usepackage{graphicx}
+\usepackage[draft]{graphicx}
 \usepackage{hyperref}
 \usepackage[backend=biber,style=authoryear-comp,sorting=nyt]{biblatex}
 \usepackage{lipsum}
@@ -18,7 +18,8 @@
 \input{sections/section0.tex}
 \tableofcontents
 \clearpage
-\foreach \i in {1,...,17}{\input{sections/section\i.tex}}
+\input{sections/section1.tex}
+\input{sections/section2.tex}
 
 \printbibliography
 \end{document} 
