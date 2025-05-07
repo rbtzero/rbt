@@ -17,7 +17,7 @@ jobs:
     - name: Compile PDF
       run: |
         cd paper
-        latexmk -pdf -bibtex -quiet main.tex
+        latexmk -pdf -quiet main.tex
     - name: Upload PDF
       uses: actions/upload-artifact@v3
       with:
