@@ -19,7 +19,7 @@ jobs:
       continue-on-error: true
       run: |
         cd paper
-        latexmk -xelatex -file-line-error -interaction=nonstopmode main.tex
+        timeout 300 latexmk -xelatex -file-line-error -interaction=nonstopmode -halt-on-error -pdf -quiet main.tex
 
     - name: Show LaTeX log on failure
       if: steps.build_pdf.outcome == 'failure'
