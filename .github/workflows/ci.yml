@@ -15,23 +15,24 @@ jobs:
           latexmk
           biber
         version: 2025
-    - name: Compile PDF using XeLaTeX
+    - name: Compile PDF (capture log)
       id: build_pdf
       continue-on-error: true
       run: |
         cd paper
-        timeout 300 latexmk -pdf -file-line-error -interaction=nonstopmode -halt-on-error -quiet main.tex
+        timeout 300 latexmk -pdf -file-line-error -interaction=nonstopmode -halt-on-error main.tex 2>&1 | tee ../build.log
 
-    - name: Show LaTeX log on failure
+    - name: Show tail of build log on failure
       if: steps.build_pdf.outcome == 'failure'
-      run: cat paper/main.log || true
+      run: |
+        echo "--- build.log (last 200 lines) ---"
+        tail -n 200 build.log || true
 
-    - name: Upload LaTeX log
-      if: steps.build_pdf.outcome == 'failure'
+    - name: Upload build log
       uses: actions/upload-artifact@v4
       with:
-        name: latex-log
-        path: paper/main.log
+        name: latex-build-log
+        path: build.log
 
     - name: Upload PDF
       if: steps.build_pdf.outcome == 'success'
