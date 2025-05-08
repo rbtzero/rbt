@@ -1,12 +1,17 @@
 name: Build notebook figures
 on:
   push:
-    branches: [ main ]
+    branches: [ "**" ]
     paths:
       - "notebooks/**"
       - "design/**"
       - "scripts/**"
       - ".github/workflows/build-figs.yml"
+  pull_request:
+    paths:
+      - "notebooks/**"
+      - "design/**"
+      - "scripts/**"
   workflow_dispatch:
 
 jobs:
