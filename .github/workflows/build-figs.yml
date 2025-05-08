@@ -21,12 +21,10 @@ jobs:
         run: |
           pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
 
-      # >>> NEW: make local package importable  <<<
-      - name: Add repo to PYTHONPATH
-        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
-      # (If you have setup.py instead, replace this step with:
-      #     pip install -e .
-      #)
+      # ---- NEW: make /scripts (and root) importable ----
+      - name: Add scripts dir to PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/scripts:$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
 
       - name: Install Inkscape
         run: |
