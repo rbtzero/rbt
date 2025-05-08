@@ -1,0 +1,35 @@
+name: Build notebook figures
+on: [workflow_dispatch]               # run manually
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: lfs: true               # pulls large figs
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          environment-file: environment.yml
+          activate-environment: rbt
+      - name: Install extras
+        shell: bash -l {0}
+        run: |
+          pip install jupyter nbconvert inkscape
+      - name: Execute notebooks
+        shell: bash -l {0}
+        run: |
+          for nb in notebooks/*.ipynb; do
+            jupyter nbconvert --execute --to notebook "$nb" --inplace
+          done
+      - name: Export vector diagrams
+        shell: bash -l {0}
+        run: |
+          inkscape --export-type=pdf design/axiom_flow.drawio \
+                   -o paper/figs/axiom_flow.pdf
+          inkscape --export-type=pdf design/number_tower.svg \
+                   -o paper/figs/number_tower.pdf
+          inkscape --export-type=pdf design/tests_overview.svg \
+                   -o paper/figs/tests_overview.pdf
+      - name: Commit figs back
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "CI: regenerate figures"
