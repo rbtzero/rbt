@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="160">
+<rect x="0" y="0" width="500" height="160" fill="#ffffff" stroke="#000"/>
+<line x1="50" y1="80" x2="450" y2="80" stroke="#000" stroke-width="2"/>
+<circle cx="100" cy="80" r="6" fill="#6fa8dc"/><text x="100" y="60" font-size="12" text-anchor="middle">XRISM</text>
+<circle cx="200" cy="80" r="6" fill="#93c47d"/><text x="200" y="60" font-size="12" text-anchor="middle">MAGIS-100</text>
+<circle cx="300" cy="80" r="6" fill="#e69138"/><text x="300" y="60" font-size="12" text-anchor="middle">CASPEr</text>
+<circle cx="400" cy="80" r="6" fill="#d5a6bd"/><text x="400" y="60" font-size="12" text-anchor="middle">LISA</text>
+</svg> 

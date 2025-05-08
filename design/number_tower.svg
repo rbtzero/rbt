@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="300">
+<rect x="0" y="0" width="200" height="300" fill="#ffffff" stroke="#000"/>
+<rect x="20" y="240" width="160" height="40" fill="#f6b26b"/>
+<text x="100" y="265" font-size="18" text-anchor="middle" fill="#000">ℕ</text>
+<rect x="20" y="190" width="160" height="40" fill="#ffd966"/>
+<text x="100" y="215" font-size="18" text-anchor="middle" fill="#000">ℤ</text>
+<rect x="20" y="140" width="160" height="40" fill="#c9daf8"/>
+<text x="100" y="165" font-size="18" text-anchor="middle" fill="#000">ℚ / ℝ</text>
+<rect x="20" y="90" width="160" height="40" fill="#d5a6bd"/>
+<text x="100" y="115" font-size="18" text-anchor="middle" fill="#000">ℂ</text>
+<rect x="20" y="40" width="160" height="40" fill="#b4a7d6"/>
+<text x="100" y="65" font-size="18" text-anchor="middle" fill="#000">ℍ</text>
+<rect x="20" y="-10" width="160" height="40" fill="#ea9999"/>
+<text x="100" y="15" font-size="18" text-anchor="middle" fill="#000">𝕆</text>
+</svg> 
