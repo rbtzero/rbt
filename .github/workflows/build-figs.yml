@@ -49,6 +49,7 @@ jobs:
 
       - name: Generate tables & patch notebooks
         run: |
+          python tools/bootstrap_notebooks.py
           python tools/write_figs.py
           python tools/generate_tables.py
 
