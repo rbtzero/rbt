@@ -47,6 +47,9 @@ jobs:
         run: |
           pip install -e .
 
+      - name: Inject figure-saving cells
+        run: python tools/write_figs.py
+
       - name: Execute notebooks
         run: |
           set -e
