@@ -1,41 +1,41 @@
 name: Build notebook figures
 on:
-  workflow_dispatch:          # run manually
+  workflow_dispatch:            # run only when you press the button
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo (LFS on)
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          environment-file: environment.yml      # <- uses the root file
-          activate-environment: rbt
-          auto-update-conda: true
+          python-version: "3.11"
 
-      - name: Install Jupyter & Inkscape
-        shell: bash -l {0}
+      - name: Install Jupyter & libs
         run: |
-          pip install --quiet jupyter nbconvert
+          pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
+
+      - name: Install Inkscape
+        run: |
           sudo apt-get update -y
           sudo apt-get install -y inkscape
 
       - name: Execute notebooks
-        shell: bash -l {0}
         run: |
           set -e
           shopt -s nullglob
           for nb in notebooks/*.ipynb; do
             echo "▶ $nb"
-            jupyter nbconvert --execute --to notebook "$nb" --inplace
+            jupyter nbconvert --to notebook --execute "$nb" --inplace
           done
 
       - name: Export vector diagrams
-        shell: bash -l {0}
         run: |
           inkscape --export-type=pdf design/axiom_flow.drawio  --export-filename=paper/figs/axiom_flow.pdf
           inkscape --export-type=pdf design/number_tower.svg   --export-filename=paper/figs/number_tower.pdf
