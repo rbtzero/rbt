@@ -1,5 +1,12 @@
 name: Build notebook figures
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - "notebooks/**"
+      - "design/**"
+      - "scripts/**"
+      - ".github/workflows/build-figs.yml"
   workflow_dispatch:
 
 jobs:
