@@ -34,9 +34,9 @@ jobs:
           pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
 
       # ---- NEW: make /scripts (and root) importable ----
-      - name: Add scripts dir to PYTHONPATH
+      - name: Add repo root to PYTHONPATH
         run: |
-          echo "PYTHONPATH=$GITHUB_WORKSPACE/scripts:$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+          echo "PYTHONPATH=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
 
       - name: Install Inkscape
         run: |
