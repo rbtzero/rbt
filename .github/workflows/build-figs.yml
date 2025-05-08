@@ -1,35 +1,62 @@
 name: Build notebook figures
-on: [workflow_dispatch]               # run manually
+
+# ────────────────────────────────
+# Manual trigger only (no on-push):
+# ────────────────────────────────
+on:
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-        with: lfs: true               # pulls large figs
-      - uses: conda-incubator/setup-miniconda@v3
+      # 1. Checkout repo (with Git-LFS files)
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      # 2. Set up Conda env from environment.yml
+      - name: Set up Conda
+        uses: conda-incubator/setup-miniconda@v3
         with:
           environment-file: environment.yml
-          activate-environment: rbt
-      - name: Install extras
+          activate-environment: rbt          # <- env name in YAML
+          auto-update-conda: true
+
+      # 3. Install Jupyter nbconvert and Inkscape CLI
+      - name: Install notebook & graphics tools
         shell: bash -l {0}
         run: |
-          pip install jupyter nbconvert inkscape
+          pip install --quiet jupyter nbconvert
+          sudo apt-get update -y
+          sudo apt-get install -y inkscape
+
+      # 4. Execute every notebook in notebooks/
       - name: Execute notebooks
         shell: bash -l {0}
         run: |
+          set -e
+          shopt -s nullglob
           for nb in notebooks/*.ipynb; do
-            jupyter nbconvert --execute --to notebook "$nb" --inplace
+            echo "Running $nb"
+            jupyter nbconvert --to notebook --execute "$nb" --inplace
           done
+
+      # 5. Export vector diagrams to PDF (overwriting placeholders)
       - name: Export vector diagrams
         shell: bash -l {0}
         run: |
-          inkscape --export-type=pdf design/axiom_flow.drawio \
-                   -o paper/figs/axiom_flow.pdf
-          inkscape --export-type=pdf design/number_tower.svg \
-                   -o paper/figs/number_tower.pdf
-          inkscape --export-type=pdf design/tests_overview.svg \
-                   -o paper/figs/tests_overview.pdf
-      - name: Commit figs back
+          inkscape --export-type=pdf design/axiom_flow.drawio   --export-filename=paper/figs/axiom_flow.pdf
+          inkscape --export-type=pdf design/number_tower.svg    --export-filename=paper/figs/number_tower.pdf
+          inkscape --export-type=pdf design/tests_overview.svg  --export-filename=paper/figs/tests_overview.pdf
+
+      # 6. Commit the regenerated figures and modified notebooks
+      - name: Commit figures back to repo
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "CI: regenerate figures"
+          commit_message: "CI: regenerate notebook figures and diagrams"
+          file_pattern: |
+            notebooks/*.ipynb
+            paper/figs/*.pdf
