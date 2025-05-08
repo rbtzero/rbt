@@ -1,9 +1,12 @@
 name: Build notebook figures
-
-# ────────────────────────────────
-# Manual trigger only (no on-push):
-# ────────────────────────────────
 on:
+  push:
+    branches: [ main ]
+    paths:
+      - "notebooks/**"
+      - "design/**"
+      - "scripts/**"
+      - ".github/workflows/build-figs.yml"
   workflow_dispatch:
 
 jobs:
@@ -11,52 +14,53 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo (with Git-LFS files)
-      - name: Checkout repo
+      - name: Checkout repo (LFS on)
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      # 2. Set up Conda env from environment.yml
-      - name: Set up Conda
-        uses: conda-incubator/setup-miniconda@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          environment-file: environment.yml
-          activate-environment: rbt          # <- env name in YAML
-          auto-update-conda: true
+          python-version: "3.11"
 
-      # 3. Install Jupyter nbconvert and Inkscape CLI
-      - name: Install notebook & graphics tools
-        shell: bash -l {0}
+      - name: Install Jupyter & libs
         run: |
-          pip install --quiet jupyter nbconvert
+          pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
+
+      # ---- NEW: make /scripts (and root) importable ----
+      - name: Add scripts dir to PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$GITHUB_WORKSPACE/scripts:$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+
+      - name: Install Inkscape
+        run: |
           sudo apt-get update -y
           sudo apt-get install -y inkscape
 
-      # 4. Execute every notebook in notebooks/
+      - name: Install repo in editable mode
+        run: |
+          pip install -e .
+
       - name: Execute notebooks
-        shell: bash -l {0}
         run: |
           set -e
           shopt -s nullglob
           for nb in notebooks/*.ipynb; do
-            echo "Running $nb"
+            echo "▶ $nb"
             jupyter nbconvert --to notebook --execute "$nb" --inplace
           done
 
-      # 5. Export vector diagrams to PDF (overwriting placeholders)
       - name: Export vector diagrams
-        shell: bash -l {0}
         run: |
-          inkscape --export-type=pdf design/axiom_flow.drawio   --export-filename=paper/figs/axiom_flow.pdf
-          inkscape --export-type=pdf design/number_tower.svg    --export-filename=paper/figs/number_tower.pdf
-          inkscape --export-type=pdf design/tests_overview.svg  --export-filename=paper/figs/tests_overview.pdf
+          inkscape --export-type=pdf design/axiom_flow.drawio  --export-filename=paper/figs/axiom_flow.pdf
+          inkscape --export-type=pdf design/number_tower.svg   --export-filename=paper/figs/number_tower.pdf
+          inkscape --export-type=pdf design/tests_overview.svg --export-filename=paper/figs/tests_overview.pdf
 
-      # 6. Commit the regenerated figures and modified notebooks
-      - name: Commit figures back to repo
+      - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "CI: regenerate notebook figures and diagrams"
+          commit_message: "CI: regenerate notebook figures & diagrams"
           file_pattern: |
             notebooks/*.ipynb
             paper/figs/*.pdf
