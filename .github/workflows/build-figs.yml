@@ -1,6 +1,6 @@
 name: Build notebook figures
 on:
-  workflow_dispatch:            # run only when you press the button
+  workflow_dispatch:
 
 jobs:
   build:
@@ -20,6 +20,13 @@ jobs:
       - name: Install Jupyter & libs
         run: |
           pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
+
+      # >>> NEW: make local package importable  <<<
+      - name: Add repo to PYTHONPATH
+        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> "$GITHUB_ENV"
+      # (If you have setup.py instead, replace this step with:
+      #     pip install -e .
+      #)
 
       - name: Install Inkscape
         run: |
