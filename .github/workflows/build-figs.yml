@@ -31,6 +31,10 @@ jobs:
           sudo apt-get update -y
           sudo apt-get install -y inkscape
 
+      - name: Install repo in editable mode
+        run: |
+          pip install -e .
+
       - name: Execute notebooks
         run: |
           set -e
