@@ -1,0 +1,14 @@
+name: rbt
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - jupyter
+  - nbconvert
+  - numpy
+  - matplotlib
+  - pandas
+  - scipy
+  - pip:
+      - inkscape-figures 
