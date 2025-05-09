@@ -17,7 +17,7 @@ fmt = pygments.formatters.LatexFormatter(
 
 for path in SRC.glob("*.lean"):
     code = path.read_text()
-    latex = fmt.format(pygments.lexers.get_lexer_by_name("lean").get_tokens(code))
+    # latex = fmt.format(pygments.lexers.get_lexer_by_name("lean").get_tokens(code))
     outfile = DST / f"{path.stem}.tex"
     outfile.write_text("\\begin{lstlisting}[language=Lean]\n" + code + "\n\\end{lstlisting}\n")
     print("✓ wrote", outfile) 
