@@ -152,7 +152,42 @@ fig = plt.figure(figsize=(5,4)); ax = fig.add_subplot(111, projection='3d')
 ax.scatter(pts[0], pts[1], pts[2], s=3, alpha=0.6)
 ax.set_xlabel('x'); ax.set_ylabel('y'); ax.set_zlabel('z'); ax.set_title('VR demo point-cloud')
 plt.savefig('../paper/figs/vr_demo.png', dpi=450, bbox_inches='tight')
-"""
+""",
+    "13_lattice_colony.ipynb": """
+import numpy as np, matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+# ---------------- lattice_torus_geometry ----------------
+θ,φ = np.linspace(0,2*np.pi,200), np.linspace(0,2*np.pi,200)
+Θ,Φ = np.meshgrid(θ,φ); R,r = 3,1
+X=(R+r*np.cos(Θ))*np.cos(Φ); Y=(R+r*np.cos(Θ))*np.sin(Φ); Z=r*np.sin(Θ)
+fig = plt.figure(figsize=(4,4)); ax = fig.add_subplot(111,projection='3d')
+ax.plot_surface(X,Y,Z,color='#66c2a5',alpha=0.7,linewidth=0)
+ax.set_axis_off()
+fig.savefig('../paper/figs/lattice_torus_geometry.png',dpi=450,bbox_inches='tight')
+plt.close(fig)
+# ---------------- lattice_growth_curve ----------------
+n = np.arange(1,40)
+colony = 1 - 2.0**(-n)
+plt.figure(figsize=(4,3))
+plt.plot(n,colony,'o-',color='#fc8d62')
+plt.xlabel('tick'); plt.ylabel('colony fraction')
+plt.title('RB lattice-colony growth'); plt.ylim(0,1)
+plt.savefig('../paper/figs/lattice_growth_curve.png',dpi=450,bbox_inches='tight')
+plt.close()
+# ---------------- lattice_colony ----------------
+N = 128
+state = np.zeros((N,N))
+state[N//2,N//2] = 1
+for _ in range(10):
+    state = np.maximum(state, np.roll(state,1,0))
+    state = np.maximum(state, np.roll(state,-1,0))
+    state = np.maximum(state, np.roll(state,1,1))
+    state = np.maximum(state, np.roll(state,-1,1))
+plt.figure(figsize=(4,4))
+plt.imshow(state,cmap='plasma')
+plt.axis('off'); plt.title('Colony after 10 ticks')
+plt.savefig('../paper/figs/lattice_colony.png',dpi=450,bbox_inches='tight')
+""",
 }
 
 for nb_name, code in cells_map.items():

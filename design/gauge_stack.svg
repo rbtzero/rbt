@@ -1,9 +1,21 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="120">
-<rect x="0" y="0" width="400" height="120" fill="#fff" stroke="#000"/>
-<rect x="20" y="20" width="360" height="25" fill="#e69138"/>
-<rect x="20" y="50" width="360" height="25" fill="#6fa8dc"/>
-<rect x="20" y="80" width="360" height="25" fill="#93c47d"/>
-<text x="200" y="37" font-size="16" text-anchor="middle" fill="#000">U(1)</text>
-<text x="200" y="67" font-size="16" text-anchor="middle" fill="#000">SU(2)</text>
-<text x="200" y="97" font-size="16" text-anchor="middle" fill="#000">SU(3)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="220" font-family="Helvetica,Arial,sans-serif">
+  <!-- bars -->
+  <rect x="50" y="20"  width="400" height="60" fill="#66c2a5"/>
+  <rect x="50" y="90"  width="400" height="60" fill="#fc8d62"/>
+  <rect x="50" y="160" width="400" height="60" fill="#8da0cb"/>
+  <!-- labels -->
+  <g font-size="18" fill="#000" text-anchor="middle">
+    <text x="250" y="55">U(1)</text>
+    <text x="250" y="125">SU(2)</text>
+    <text x="250" y="195">SU(3)</text>
+  </g>
+  <!-- down arrow -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fff" />
+    </marker>
+  </defs>
+  <line x1="250" y1="220" x2="250" y2="260" stroke="#fff" stroke-width="4" marker-end="url(#arrow)"/>
+  <rect x="200" y="260" width="100" height="28" fill="#fafafa" stroke="#333"/>
+  <text x="250" y="280" font-size="14" text-anchor="middle">Curvature</text>
 </svg> 

@@ -1,4 +1,43 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="150">
-<rect x="0" y="0" width="400" height="150" fill="#ffffff" stroke="#000000"/>
-<text x="200.0" y="75.0" font-size="24" text-anchor="middle" dominant-baseline="middle" fill="#000">AXIOM FLOW (placeholder)</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="160" font-family="Helvetica,Arial,sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#000" />
+    </marker>
+  </defs>
+  <!-- six boxes -->
+  <g font-size="14" fill="#000" stroke="#333" stroke-width="1">
+    <rect x="10"  y="30" width="150" height="60" fill="#e1f5fe" />
+    <text x="85"  y="65" text-anchor="middle">δ-Glitch</text>
+
+    <rect x="180" y="30" width="150" height="60" fill="#fff9c4" />
+    <text x="255" y="50" text-anchor="middle">Counting ⇒ ℕ</text>
+
+    <rect x="350" y="30" width="150" height="60" fill="#c8e6c9" />
+    <text x="425" y="45" text-anchor="middle">Number-Tower</text>
+    <text x="425" y="65" text-anchor="middle">(ℤ ℚ ℝ ℂ ℍ 𝕆)</text>
+
+    <rect x="520" y="30" width="150" height="60" fill="#ffe0b2" />
+    <text x="595" y="50" text-anchor="middle">Gauge Stack</text>
+    <text x="595" y="68" text-anchor="middle">U(1) SU(2) SU(3)</text>
+
+    <rect x="690" y="30" width="150" height="60" fill="#d1c4e9" />
+    <text x="765" y="65" text-anchor="middle">Spacetime &amp; Gravity</text>
+
+    <rect x="860" y="30" width="180" height="60" fill="#ffccbc" />
+    <text x="950" y="50" text-anchor="middle">Mass Spectrum → Life</text>
+  </g>
+  <!-- arrows -->
+  <g stroke="#000" stroke-width="1.5" marker-end="url(#arrow)" font-size="12">
+    <line x1="160" y1="60" x2="180" y2="60" />
+    <text x="170" y="25" text-anchor="middle">irreversible bit</text>
+
+    <line x1="330" y1="60" x2="350" y2="60" />
+    <text x="340" y="95" text-anchor="middle">adjunction</text>
+
+    <line x1="500" y1="60" x2="520" y2="60" />
+    <text x="510" y="25" text-anchor="middle">fan-in RG</text>
+
+    <line x1="670" y1="60" x2="690" y2="60" />
+    <line x1="840" y1="60" x2="860" y2="60" />
+  </g>
 </svg>

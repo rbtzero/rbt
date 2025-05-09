@@ -1,8 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="500" height="160">
-<rect x="0" y="0" width="500" height="160" fill="#ffffff" stroke="#000"/>
-<line x1="50" y1="80" x2="450" y2="80" stroke="#000" stroke-width="2"/>
-<circle cx="100" cy="80" r="6" fill="#6fa8dc"/><text x="100" y="60" font-size="12" text-anchor="middle">XRISM</text>
-<circle cx="200" cy="80" r="6" fill="#93c47d"/><text x="200" y="60" font-size="12" text-anchor="middle">MAGIS-100</text>
-<circle cx="300" cy="80" r="6" fill="#e69138"/><text x="300" y="60" font-size="12" text-anchor="middle">CASPEr</text>
-<circle cx="400" cy="80" r="6" fill="#d5a6bd"/><text x="400" y="60" font-size="12" text-anchor="middle">LISA</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="240" font-family="Helvetica,Arial,sans-serif">
+  <!-- table grid -->
+  <rect x="0" y="0" width="640" height="40" fill="#404040"/>
+  <text x="120" y="25" fill="#fff" font-size="16" text-anchor="middle">Experiment</text>
+  <text x="320" y="25" fill="#fff" font-size="16" text-anchor="middle">Year</text>
+  <text x="520" y="25" fill="#fff" font-size="16" text-anchor="middle">RB Prediction</text>
+
+  <!-- rows -->
+  <g font-size="14" text-anchor="middle">
+    <!-- row template functionally implemented by repeated code -->
+    <rect x="0" y="40" width="640" height="32" fill="#f7f7f7"/>
+    <text x="120" y="62">XRISM</text><text x="320" y="62">2026</text><text x="520" y="62">3.54 keV ring-aperture line</text>
+
+    <rect x="0" y="72" width="640" height="32" fill="#ffffff"/>
+    <text x="120" y="94">MAGIS-100</text><text x="320" y="94">2028</text><text x="520" y="94">10⁹ amu decoherence</text>
+
+    <rect x="0" y="104" width="640" height="32" fill="#f7f7f7"/>
+    <text x="120" y="126">CASPEr</text><text x="320" y="126">2027</text><text x="520" y="126">EDM sign reversal</text>
+
+    <rect x="0" y="136" width="640" height="32" fill="#ffffff"/>
+    <text x="120" y="158">LHC Run-4</text><text x="320" y="158">2030</text><text x="520" y="158">Axial lepton mode</text>
+
+    <rect x="0" y="168" width="640" height="32" fill="#f7f7f7"/>
+    <text x="120" y="190">Einstein Telescope</text><text x="320" y="190">2032</text><text x="520" y="190">H → γγ branching tweak</text>
+
+    <rect x="0" y="200" width="640" height="32" fill="#ffffff"/>
+    <text x="120" y="222">MAGIS-Magnum</text><text x="320" y="222">2035</text><text x="520" y="222">Ledger-tension G oscillation</text>
+  </g>
+  <!-- vertical grid lines -->
+  <g stroke="#ccc" stroke-width="1">
+    <line x1="240" y1="0" x2="240" y2="232"/>
+    <line x1="440" y1="0" x2="440" y2="232"/>
+  </g>
+  <!-- outer border -->
+  <rect x="0" y="0" width="640" height="232" fill="none" stroke="#404040" stroke-width="1"/>
 </svg> 
