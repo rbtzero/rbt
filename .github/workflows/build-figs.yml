@@ -70,10 +70,10 @@ jobs:
           # ensure binary diff so git-auto-commit sees change
           for f in paper/figs/axiom_flow.png paper/figs/intro_timeline.png paper/figs/gauge_stack.png paper/figs/number_tower.png paper/figs/tests_overview.png; do echo "#$(date +%s%N)" >> "$f"; done
 
+      - name: Touch unique flag to force git diff
+        run: echo $(date +%s%N) > paper/figs/_ci_timestamp.txt
+
       - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "CI: regenerate notebook figures & diagrams"
-          file_pattern: |
-            notebooks/*.ipynb
-            paper/figs/*.png
