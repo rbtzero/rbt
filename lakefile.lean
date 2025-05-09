@@ -6,4 +6,7 @@ package rb_lean where
 
 lean_lib RBProofs where
   globs := #[`AxiomUniqueness, `NumberTower, `BornRule,
-            `GaugeStack, `MassFormula, `LogisticTheorem] 
+            `GaugeStack, `MassFormula, `LogisticTheorem]
+
+lean_lib RB
+lean_lib Clay 
