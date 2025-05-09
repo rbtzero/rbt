@@ -81,7 +81,7 @@ lept=['e','μ','τ']
 m=np.array([0.511,105.66,1776.86])
 g2,gY=0.651,0.357
 Δ=1e-3*(g2**2-gY**2)*m
-plt.figure(figsize=(4,3)); plt.stem(lept,Δ, basefmt=' ', use_line_collection=True)
+plt.figure(figsize=(4,3)); plt.stem(lept,Δ, basefmt=' ')
 plt.ylabel('Δm₅ [MeV]'); plt.title('RB axial splitting'); plt.ylim(0,max(Δ)*1.2)
 plt.savefig('../paper/figs/axial_lepton_spectrum.png', dpi=450, bbox_inches='tight')
 """,
