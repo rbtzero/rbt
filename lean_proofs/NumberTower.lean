@@ -1,0 +1,3 @@
+import Mathlib.Data.Complex.Basic
+theorem NumberTower : ℍ ≃ₗ[ℝ] (ℂ × ℂ) := by
+  exact Quaternion.equivComplexPair 

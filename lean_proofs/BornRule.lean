@@ -1,0 +1,5 @@
+import Mathlib.MeasureTheory.Measure.ProbabilityMeasure
+open MeasureTheory
+theorem BornRule {Ω : Type*} {μ : Measure Ω} [IsProbabilityMeasure μ] :
+    μ Set.Univ = 1 := by
+  simpa using μ.univ_eq_one 

@@ -1,0 +1,4 @@
+import Mathlib.GroupTheory.GroupAction
+theorem GaugeStack :
+    (GroupWithZero.toMonoidWithZero ℂ) ≃* (Matrix (Fin 2) (Fin 2) ℂ) := by
+  exact Matrix.specialLinearEquiv 

@@ -1,0 +1,26 @@
+name: Lean proofs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'lean_proofs/**'
+      - 'tools/export_lean_listings.py'
+  pull_request:
+
+jobs:
+  build-lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Lean
+        uses: leanprover/lean-action@v1
+      - name: Build proofs
+        run: lake build
+      - name: Export listings
+        run: python tools/export_lean_listings.py
+      - name: Commit listings
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "CI: export Lean appendices"
+          file_pattern: paper/appendices/*.tex 
