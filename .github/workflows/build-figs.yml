@@ -64,6 +64,8 @@ jobs:
           inkscape design/gauge_stack.svg         --export-type=png --export-filename=paper/figs/gauge_stack.png       --export-dpi=300
           inkscape design/number_tower.svg        --export-type=png --export-filename=paper/figs/number_tower.png      --export-dpi=300
           inkscape design/tests_overview.svg      --export-type=png --export-filename=paper/figs/tests_overview.png    --export-dpi=300
+          # ensure binary diff so git-auto-commit sees change
+          for f in paper/figs/axiom_flow.png paper/figs/intro_timeline.png paper/figs/gauge_stack.png paper/figs/number_tower.png paper/figs/tests_overview.png; do echo "#$(date +%s%N)" >> "$f"; done
 
       - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
