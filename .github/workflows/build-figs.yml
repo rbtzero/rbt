@@ -1,4 +1,7 @@
 name: Build notebook figures
++permissions:
++  contents: write
++  pull-requests: write
 on:
   push:
     branches: [ "main" ]
