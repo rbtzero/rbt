@@ -19,7 +19,7 @@ MAP = {
     "07_mass_spectrum.ipynb":   [("mass_spectrum.png", "plt")],
     "10_bcs_gap.ipynb":         [("bcs_gap.png", "plt")],
 
-    "06_curvature_map.ipynb":   [("spacetime_curvature.png", "plt")],
+    "06_spacetime_curvature.ipynb": [("spacetime_curvature.png", "plt")],
     "09_ring_line.ipynb":       [("ring_aperture_line.png", "plt")],
     "09_axial_lepton.ipynb":    [("axial_lepton_spectrum.png", "plt")],
 
@@ -28,6 +28,11 @@ MAP = {
         ("lattice_growth_curve.png",   "plt"),
         ("lattice_colony.png",         "plt"),
     ],
+
+    "11_logistic_heatmap.ipynb":    [("logistic_heatmap.png", "plt")],
+    "11_brain_knot_decay.ipynb":    [("brain_knot_decay.png", "plt")],
+    "12_curvature_waveguide.ipynb": [("curvature_waveguide.png", "plt")],
+    "14_vr_demo.ipynb":             [("vr_demo.png", "plt")],
 }
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]

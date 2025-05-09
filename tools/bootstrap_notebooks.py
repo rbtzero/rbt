@@ -103,6 +103,55 @@ phi=np.where(T<T0, np.sqrt(D*(T0**2-T**2)/(2*lam)), 0)
 plt.figure(figsize=(5,3)); plt.plot(T,phi,lw=2)
 plt.xlabel('T [GeV]'); plt.ylabel('⟨φ⟩ [GeV]'); plt.title('Electroweak crossover')
 plt.savefig('../paper/figs/electroweak_crossover.png', dpi=450, bbox_inches='tight')
+""",
+    "11_logistic_heatmap.ipynb": """
+import numpy as np, matplotlib.pyplot as plt
+r = np.linspace(2.5,4,800)
+x0 = np.linspace(0,1,800)
+R,X = np.meshgrid(r,x0)
+
+def iterate(x,r,n=200):
+    for _ in range(n):
+        x = r*x*(1-x)
+    return x
+Z = iterate(X, R)
+plt.figure(figsize=(6,4))
+plt.imshow(Z, extent=[r.min(),r.max(),x0.min(),x0.max()], aspect='auto', origin='lower', cmap='plasma')
+plt.xlabel('r'); plt.ylabel('$x_0$'); plt.title('Logistic-map heat-map')
+plt.colorbar(label='$x_{n}$')
+plt.savefig('../paper/figs/logistic_heatmap.png', dpi=450, bbox_inches='tight')
+""",
+    "11_brain_knot_decay.ipynb": """
+import numpy as np, matplotlib.pyplot as plt
+T = np.linspace(0, 10, 1200)
+Y = np.sin(12*T)*np.exp(-0.4*T)
+plt.figure(figsize=(6,3))
+plt.plot(T, Y, lw=1.8)
+plt.xlabel('t'); plt.ylabel('Amplitude'); plt.title('Brain-knot decay envelope')
+plt.grid(alpha=0.3)
+plt.savefig('../paper/figs/brain_knot_decay.png', dpi=450, bbox_inches='tight')
+""",
+    "12_curvature_waveguide.ipynb": """
+import numpy as np, matplotlib.pyplot as plt
+N=500
+x,y = np.linspace(-4,4,N), np.linspace(-4,4,N)
+X,Y = np.meshgrid(x,y)
+K = np.cos(0.5*X)*np.sin(0.5*Y)
+plt.figure(figsize=(5,4))
+img=plt.imshow(K, origin='lower', extent=[-4,4,-4,4], cmap='coolwarm')
+plt.colorbar(img, label='Gaussian curvature κ')
+plt.xlabel('x'); plt.ylabel('y'); plt.title('Curvature wave-guide')
+plt.savefig('../paper/figs/curvature_waveguide.png', dpi=450, bbox_inches='tight')
+""",
+    "14_vr_demo.ipynb": """
+import numpy as np, matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+np.random.seed(0)
+pts=np.random.standard_normal((3,2000))
+fig = plt.figure(figsize=(5,4)); ax = fig.add_subplot(111, projection='3d')
+ax.scatter(pts[0], pts[1], pts[2], s=3, alpha=0.6)
+ax.set_xlabel('x'); ax.set_ylabel('y'); ax.set_zlabel('z'); ax.set_title('VR demo point-cloud')
+plt.savefig('../paper/figs/vr_demo.png', dpi=450, bbox_inches='tight')
 """
 }
 

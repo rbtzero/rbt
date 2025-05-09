@@ -31,7 +31,7 @@ jobs:
 
       - name: Install Jupyter & libs
         run: |
-          pip install --quiet jupyter nbconvert numpy scipy matplotlib pandas plotly
+          pip install --quiet jupyter "jinja2<3.1" "nbconvert==7.16.3" nbclient numpy scipy matplotlib pandas plotly cairosvg
 
       # ---- NEW: make /scripts (and root) importable ----
       - name: Add repo root to PYTHONPATH
@@ -53,19 +53,15 @@ jobs:
           python tools/write_figs.py
           python tools/generate_tables.py
 
-      - name: Execute notebooks
+      - name: Render notebook figures (direct)
         run: |
-          set -e
-          shopt -s nullglob
-          for nb in notebooks/*.ipynb; do
-            echo "▶ $nb"
-            jupyter nbconvert --to notebook --execute "$nb" --inplace
-          done
+          python tools/run_notebook_figures.py
 
       - name: Export vector diagrams
         run: |
           inkscape --export-type=png design/axiom_flow.drawio  --export-filename=paper/figs/axiom_flow.png
           inkscape --export-type=png design/intro_timeline.drawio --export-filename=paper/figs/intro_timeline.png
+          python tools/export_svgs.py
 
       - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
