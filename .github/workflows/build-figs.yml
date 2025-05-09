@@ -59,11 +59,11 @@ jobs:
 
       - name: Export vector diagrams
         run: |
-          inkscape design/axiom_flow.drawio       --export-type=png --export-filename=paper/figs/axiom_flow.png       --export-width=1500
-          inkscape design/intro_timeline.drawio   --export-type=png --export-filename=paper/figs/intro_timeline.png   --export-width=1500
-          inkscape design/gauge_stack.svg         --export-type=png --export-filename=paper/figs/gauge_stack.png       --export-width=1600
-          inkscape design/number_tower.svg        --export-type=png --export-filename=paper/figs/number_tower.png      --export-width=1600
-          inkscape design/tests_overview.svg      --export-type=png --export-filename=paper/figs/tests_overview.png    --export-width=1600
+          inkscape design/axiom_flow.drawio       --export-type=png --export-filename=paper/figs/axiom_flow.png       --export-dpi=300
+          inkscape design/intro_timeline.drawio   --export-type=png --export-filename=paper/figs/intro_timeline.png   --export-dpi=300
+          inkscape design/gauge_stack.svg         --export-type=png --export-filename=paper/figs/gauge_stack.png       --export-dpi=300
+          inkscape design/number_tower.svg        --export-type=png --export-filename=paper/figs/number_tower.png      --export-dpi=300
+          inkscape design/tests_overview.svg      --export-type=png --export-filename=paper/figs/tests_overview.png    --export-dpi=300
 
       - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
