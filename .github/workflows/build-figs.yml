@@ -1,7 +1,7 @@
 name: Build notebook figures
 on:
   push:
-    branches: [ "**" ]
+    branches: [ "main" ]
     paths:
       - "notebooks/**"
       - "design/**"
