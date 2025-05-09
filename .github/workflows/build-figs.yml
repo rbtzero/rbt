@@ -61,7 +61,9 @@ jobs:
         run: |
           inkscape --export-type=png design/axiom_flow.drawio  --export-filename=paper/figs/axiom_flow.png
           inkscape --export-type=png design/intro_timeline.drawio --export-filename=paper/figs/intro_timeline.png
-          python tools/export_svgs.py
+          inkscape --export-type=png design/gauge_stack.svg       --export-filename=paper/figs/gauge_stack.png
+          inkscape --export-type=png design/number_tower.svg      --export-filename=paper/figs/number_tower.png
+          inkscape --export-type=png design/tests_overview.svg    --export-filename=paper/figs/tests_overview.png
 
       - name: Commit regenerated figures
         uses: stefanzweifel/git-auto-commit-action@v5
