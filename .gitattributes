@@ -2,7 +2,7 @@
 *.csv   filter=lfs diff=lfs merge=lfs -text
 *.bin   filter=lfs diff=lfs merge=lfs -text
 *.png   filter=lfs diff=lfs merge=lfs -text
-*.pdf   filter=lfs diff=lfs merge=lfs -text
+# *.pdf   removed from LFS
 *.mp4   filter=lfs diff=lfs merge=lfs -text
 paper/figs/*.pdf -filter -diff -merge -text
 paper/figs/*.png -filter -diff -merge -text 
