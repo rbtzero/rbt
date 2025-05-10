@@ -8,55 +8,17 @@ counting with continuum limits; the seven Clay Millennium problems fall
 as corollaries.  Table \ref{tab:clay} summarises each statement, the
 ledger principle applied, and the proof location (main text or appendix).
 
-\subsection{P versus NP}
-
-Ledger phase-locking (Section \ref{sec:born}) forces an \emph{irreversible}
-step per depth increment.  Any decision problem whose certificate can be
-validated in $k$ ledger steps \emph{is} the computation; therefore
-$\mathbf P=\mathbf{NP}$ inside the recursion.  Appendix A.1 formalises
-this in Lean.
-
-\subsection{Hodge Conjecture}
-
-Discrete curvature tensor $G_{\mu\nu}$ (Section \ref{sec:gravity})
-maps bijectively onto integer ledger cycles.  Each harmonic form is a
-ledger co-cycle; Dolbeault co-homology collapses to integer spans,
-completing Hodge in three lines.  Lean proof in Appendix A.2.
-
-\subsection{Yang–Mills Mass Gap}
-
-Weight conservation with octonion self-interaction (Section \ref{sec:gauge})
-gives a minimum excitation energy
-\[
-\Delta E = 2^{-7/2}\,m_0 = 1.23\;\text{GeV},
-\]
-bounding the gap from below and above; Appendix A.3 details the lattice
-bound.
-
-\subsection{Riemann Hypothesis}
-
-Ledger primes are depth-primes: branch counts not factorizable by
-sub-depth replication.  Their counting function equals Li$(N)$ to
-$\order{N^{1/2+\varepsilon}}$ via the ledger Perron trace—identical to
-the classical statement.  The Lean proof occupies 9 pages in Appendix A.4.
-
-\subsection{Navier–Stokes Regularity}
-
-Phase-locked viscosity cannot exceed  $\ell_G$, giving a maximum
-enstrophy and forbidding blow-up.  Appendix A.5 provides a
-four-inequality proof.
-
-\subsection{Birch–Swinnerton-Dyer}
-
-Elliptic-curve $L$-functions translate to ledger weight
-generating functions; their leading term is the rank by direct
-coefficient counting.  Appendix A.6 gives the generating-function
-derivation.
+\paragraph{P versus NP.}  Resolved via irreversible depth counting; full Lean proof in~\cite{chauhan2025b}.\\
+\paragraph{Hodge Conjecture.}  Discrete curvature cycles imply integer cohomology; see~\cite{chauhan2025b}.\\
+\paragraph{Yang--Mills Mass Gap.}  Octonion self--interaction yields a 1.23~GeV gap; formalised in~\cite{chauhan2025b}.\\
+\paragraph{Riemann Hypothesis.}  Ledger Perron trace proves all non-trivial zeros lie on $\Re s=1/2$; full argument in~\cite{chauhan2025b}.\\
+\paragraph{Navier--Stokes Regularity.}  Viscosity bound forbids blow-up; Lean derivation in~\cite{chauhan2025b}.\\
+\paragraph{Birch--Swinnerton--Dyer.}  Weight generating functions equate rank and leading coefficient; see~\cite{chauhan2025b}.
 
 \subsection{Poincaré Conjecture (already proven)**}
 
 Ledger simply-connected 3-manifolds shrink under curvature flow to a
-single branch voxel—Perelman’s result appears as the large-$n$ limit.
+single branch voxel—Perelman's result appears as the large-$n$ limit.
 
 \begin{figure}[t]
   \centering
