@@ -8,5 +8,4 @@ lean_lib RBProofs where
   globs := #[`AxiomUniqueness, `NumberTower, `BornRule,
             `GaugeStack, `MassFormula, `LogisticTheorem]
 
-lean_lib RB
-lean_lib Clay 
+lean_lib RB 
