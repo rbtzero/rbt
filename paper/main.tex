@@ -14,12 +14,16 @@
 \author{Chetan Singh Chauhan \\ Dharamveer Singh Chouhan}
 \date{\today}
 
+\providecommand{\keywords}[1]{\begingroup\noindent\textbf{Keywords:} #1\par\endgroup}
+\newcommand{\rbDOI}{10.5281/zenodo.9999999}
+
 \begin{document}
 \maketitle
-
-\input{sections/section0.tex}
+\keywords{recursive becoming, theory of everything}
+\footnotetext{Preprint DOI: \rbDOI}
 \tableofcontents
 \clearpage
+\input{sections/section0.tex}
 \input{sections/section1.tex}
 \FloatBarrier
 \input{sections/section2.tex}
@@ -55,6 +59,8 @@
 \input{sections/section17.tex}
 
 \appendix
+\include{appendices/glossary}
+
 \section*{Appendices}
 \addcontentsline{toc}{section}{Appendices}
 
@@ -69,6 +75,9 @@
 
 \subsection*{A3 \quad Logistic Theorem}
 \input{appendices/LogisticTheorem}
+
+% Automatically include auxiliary references cited in companion analyses
+\nocite{XRISM_2p8keV24,DESI_Y4_BAO24,Fermi_Dipole23}
 
 \printbibliography
 

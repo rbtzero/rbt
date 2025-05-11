@@ -4,6 +4,7 @@ on:
   push:
     branches: [ main ]
     paths:
+      - 'RB/**'
       - 'lean_proofs/**'
       - 'tools/export_lean_listings.py'
   pull_request:

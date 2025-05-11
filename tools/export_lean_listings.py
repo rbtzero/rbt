@@ -15,9 +15,15 @@ fmt = pygments.formatters.LatexFormatter(
     style="default", linenos=True, verboptions="frame=single"
 )
 
+written=False
 for path in SRC.glob("*.lean"):
     code = path.read_text()
-    # latex = fmt.format(pygments.lexers.get_lexer_by_name("lean").get_tokens(code))
     outfile = DST / f"{path.stem}.tex"
-    outfile.write_text("\\begin{lstlisting}[language=Lean]\n" + code + "\n\\end{lstlisting}\n")
-    print("✓ wrote", outfile) 
+    new_tex = "\\begin{lstlisting}[language=Lean]\n" + code + "\n\\end{lstlisting}\n"
+    if not outfile.exists() or outfile.read_text() != new_tex:
+        outfile.write_text(new_tex)
+        print("✓ wrote", outfile)
+        written=True
+
+if not written:
+    print("✓ no appendix listings changed; skipping commit hook") 
