@@ -90,7 +90,7 @@ Please cite both the **paper** and the **repository**:
 
 ## 7. Contributing & questions
 
-Bug reports, questions and pull-requests are welcome!  Please open an issue or email `chetan AT rbtzero.org`.
+Bug reports, questions and pull-requests are welcome!  Please open an issue or email <nothingnessrbt@gmail.com>.
 
 All contributions must leave `make paper` green on CI.
 
