@@ -114,6 +114,12 @@ def run_ipynb(nb_path: pathlib.Path):
 
 
 def main():
+    # 0. First render the deterministic Matplotlib diagrams that are not notebook-based
+    render_script = ROOT / 'tools' / 'render_diagrams.py'
+    if render_script.exists():
+        print('⇢ rendering static diagrams via', render_script.name, flush=True)
+        subprocess.check_call([sys.executable, str(render_script)])
+
     nbs = sorted(NB_DIR.glob("*.ipynb"))
     if not nbs:
         print("No notebooks found in", NB_DIR)

@@ -56,11 +56,12 @@ for i,(txt,c) in enumerate(boxes):
     ax.text(i*1.3+0.6,0.6,txt,ha='center',va='center',fontsize=14)
     if i>0:
         ax.annotate('',xy=((i-0.05)*1.3,0.6),xytext=((i-1)*1.3+1.2,0.6),arrowprops=dict(arrowstyle='-|>',lw=1))
-ax.text(-0.4,0.6,'adjunction ×2',va='center',ha='right',fontsize=10,rotation=90)
-ax.set_xlim(-1, len(boxes)*1.3)
+# Remove legacy placeholder text and tighten layout
+# Compute plot bounds dynamically so bbox_inches="tight" captures only the boxes+arrows.
+ax.set_xlim(-0.2, len(boxes)*1.3 - 0.1)
 ax.set_ylim(0,1.2)
-fig.savefig(figdir/'number_tower.png',dpi=300,bbox_inches='tight')
-fig.savefig(figdir/'number_tower_flow.pdf',bbox_inches='tight')
+fig.savefig(figdir/'number_tower.png', dpi=300, bbox_inches='tight')
+fig.savefig(figdir/'number_tower_flow.pdf', bbox_inches='tight')
 plt.close(fig)
 
 # 5. tests_overview.png --------------------------------------------
