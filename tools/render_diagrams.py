@@ -48,13 +48,17 @@ fig.savefig(figdir/'gauge_stack.png',dpi=300,bbox_inches='tight')
 plt.close(fig)
 
 # 4. number_tower.png ----------------------------------------------
-fig, ax = plt.subplots(figsize=(3,6))
+fig, ax = plt.subplots(figsize=(10,2.2))
 ax.axis('off')
-boxes=[('ℕ','#d9d9d9'),('ℤ','#bde1ff'),('ℚ / ℝ','#d9d9d9'),('ℂ','#bde1ff'),('ℍ','#d9d9d9'),('𝕆','#bde1ff')]
+boxes=[('ℕ','#d9d9d9'),('ℤ','#bde1ff'),('ℚ','#d9d9d9'),('ℝ','#bde1ff'),('ℂ','#d9d9d9'),('ℍ','#bde1ff'),('𝕆','#d9d9d9')]
 for i,(txt,c) in enumerate(boxes):
-    ax.add_patch(patches.Rectangle((0.2,1+i*0.8),1.6,0.6,facecolor=c,edgecolor='k'))
-    ax.text(1,1+i*0.8+0.3,txt,ha='center',va='center',fontsize=14)
-ax.annotate('adjunction ×2',xy=(0.05,1),xytext=(0.05,5.6),va='center',ha='center',rotation=90,arrowprops=dict(arrowstyle='-|>',lw=1))
+    ax.add_patch(patches.FancyBboxPatch((i*1.3,0.2),1.2,0.8,boxstyle='round,pad=0.02',facecolor=c,edgecolor='k'))
+    ax.text(i*1.3+0.6,0.6,txt,ha='center',va='center',fontsize=14)
+    if i>0:
+        ax.annotate('',xy=((i-0.05)*1.3,0.6),xytext=((i-1)*1.3+1.2,0.6),arrowprops=dict(arrowstyle='-|>',lw=1))
+ax.text(-0.4,0.6,'adjunction ×2',va='center',ha='right',fontsize=10,rotation=90)
+ax.set_xlim(-1, len(boxes)*1.3)
+ax.set_ylim(0,1.2)
 fig.savefig(figdir/'number_tower.png',dpi=300,bbox_inches='tight')
 fig.savefig(figdir/'number_tower_flow.pdf',bbox_inches='tight')
 plt.close(fig)
