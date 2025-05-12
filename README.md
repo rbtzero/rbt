@@ -52,7 +52,7 @@ The CI log is the authoritative indicator that every commit is *publication-read
 ## 4. Reproducibility & data archiving
 
 * SHA-256 hashes for each notebook output and Lean theorem are listed in *paper* §"Appendices & Reproducibility" (pp. 39–42).
-* Large binary artefacts (> 10 MB) live in a Zenodo bundle: DOI **10.5281/zenodo.1234567**.  The README there maps every file to a figure/table in the paper.
+* Large binary artefacts (> 10 MB) live in a Zenodo bundle: DOI **10.5281/zenodo.15391360**.  The README there maps every file to a figure/table in the paper.
 * All random number generators are seeded; notebooks produce identical images across machines.
 
 ## 5. Dependency summary
@@ -75,7 +75,7 @@ Please cite both the **paper** and the **repository**:
   title   = {Recursive Becoming: From Nothingness to Everything},
   author  = {Chetan Singh Chauhan and Dharamveer Singh Chouhan},
   year    = {2025},
-  note    = {Preprint DOI: 10.5281/zenodo.9999999}
+  note    = {Preprint DOI: 10.5281/zenodo.15391360}
 }
 
 @software{RBRepo2025,
