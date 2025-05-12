@@ -86,6 +86,21 @@ reproduces the differential-geometry definition.
   \label{fig:spacetime-curvature}
 \end{figure}
 
+\paragraph{Why \emph{exactly} three?}
+In a causal ledger, every reversible walk step explores two new links
+but sacrifices one degree of freedom to preserve the
+`no-double-commit' constraint.  The recursion
+\[
+  N(\ell\!+\!1)=2N(\ell)-1
+\]
+has the exponential solution $N(\ell)\propto 3^{\ell/2}$, whose
+log-slope is the integer~$3$.  Any attempt to embed the same rule in a
+four-link neighbourhood would demand $N(\ell+1)=3N(\ell)-1$, violating
+norm preservation; in 2-D the walk collapses to a line.  Hence the
+plateau \emph{must} take the value $D_S=3$---the only integer that
+satisfies ledger reversibility, parity protection, and norm
+conservation simultaneously.
+
 \subsection{Post-Newtonian parameters}
 
 Expanding Eq.~\eqref{eq:ledger-metric} around a static point mass
