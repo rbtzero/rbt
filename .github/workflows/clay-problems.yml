@@ -53,5 +53,5 @@ jobs:
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
       - name: Check RH and NS Lean stubs
         run: |
-          lean -Dpp.unicode=true clay-problems/problems/RH/rh_lean/Ledger.lean
-          lean -Dpp.unicode=true clay-problems/problems/NS/ns_lean/Energy.lean 
+          lean clay-problems/problems/RH/rh_lean/Ledger.lean
+          lean clay-problems/problems/NS/ns_lean/Energy.lean 
