@@ -1,0 +1,56 @@
+name: clay-problems CI
+
+on:
+  push:
+    paths:
+      - 'clay-problems/**'
+      - '.github/workflows/clay-problems.yml'
+  pull_request:
+    paths:
+      - 'clay-problems/**'
+
+jobs:
+  build-latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y texlive-full
+
+      - name: Compile monograph (capture log)
+        id: build_pdf
+        continue-on-error: true
+        run: |
+          timeout 600 latexmk -pdf -interaction=nonstopmode -file-line-error -halt-on-error clay-problems/main.tex 2>&1 | tee clay_build.log
+
+      - name: Show tail of build log on failure
+        if: steps.build_pdf.outcome == 'failure'
+        run: |
+          echo "--- clay_build.log (last 200 lines) ---"
+          tail -n 200 clay_build.log || true
+
+      - name: Upload build log
+        uses: actions/upload-artifact@v4
+        with:
+          name: clay-latex-build-log
+          path: clay_build.log
+
+      - name: Fail job if LaTeX failed
+        if: steps.build_pdf.outcome == 'failure'
+        run: exit 1
+
+  lean-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Lean toolchain (elan)
+        uses: leanprover/elan-action@v1
+        with:
+          toolchain: leanprover/lean4:stable
+      - name: Check RH and NS Lean stubs
+        run: |
+          lean -Dpp.unicode=true clay-problems/problems/RH/rh_lean/Ledger.lean
+          lean -Dpp.unicode=true clay-problems/problems/NS/ns_lean/Energy.lean 
