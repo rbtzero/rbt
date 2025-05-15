@@ -46,10 +46,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Install Lean toolchain (elan)
-        uses: leanprover/elan-action@v1
-        with:
-          toolchain: leanprover/lean4:stable
+      - name: Install Lean toolchain (elan script)
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y curl
+          curl -L https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
       - name: Check RH and NS Lean stubs
         run: |
           lean -Dpp.unicode=true clay-problems/problems/RH/rh_lean/Ledger.lean
