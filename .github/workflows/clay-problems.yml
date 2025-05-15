@@ -3,10 +3,13 @@ name: clay-problems CI
 on:
   push:
     paths:
+      # Trigger when submodule pointer file or any contents change
+      - 'clay-problems'
       - 'clay-problems/**'
       - '.github/workflows/clay-problems.yml'
   pull_request:
     paths:
+      - 'clay-problems'
       - 'clay-problems/**'
 
 jobs:
@@ -51,9 +54,9 @@ jobs:
           sudo apt-get update -y && sudo apt-get install -y curl
           curl -L https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | bash -s -- -y
           echo "$HOME/.elan/bin" >> $GITHUB_PATH
-      - name: Check RH and NS Lean stubs
+      - name: Build Lean project (Lake)
         run: |
-          lean clay-problems/problems/RH/rh_lean/Ledger.lean
-          lean clay-problems/problems/NS/ns_lean/Energy.lean
-          lean clay-problems/problems/YM/ym_lean/AxialPositivity.lean
-          python clay-problems/problems/PvsNP/pnp_checker.py 
+          cd clay-problems
+          lake exe cache get || true
+          lake build
+          python problems/PvsNP/pnp_checker.py 
