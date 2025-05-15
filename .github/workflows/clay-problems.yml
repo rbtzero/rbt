@@ -68,3 +68,7 @@ jobs:
           lake exe cache get || true
           lake build
           python problems/PvsNP/pnp_checker.py 
+      - name: Navier–Stokes Lean build
+        run: |
+          cd clay-problems
+          lake build ClayNS 
