@@ -71,4 +71,21 @@ jobs:
       - name: Navier–Stokes Lean build
         run: |
           cd clay-problems
-          lake build ClayNS 
+          lake build ClayNS
+
+      - name: Build Lean proofs (RH)
+        run: |
+          cd clay-problems
+          lake build ClayRH
+
+      - name: γ-term numeric sanity
+        run: |
+          pip install mpmath
+          python - <<'PY'
+          import mpmath as mp, math
+          t=0.0001
+          delta=t**0.25
+          psi=lambda x,d: math.tanh(x/d)
+          integral= mp.quad(lambda nu: (nu/(2*math.pi))**2*psi(nu,delta)*math.exp(-nu**2*t/(2*math.pi)**2), [-mp.inf, mp.inf])
+          assert abs(integral) < 1e5
+          PY 
