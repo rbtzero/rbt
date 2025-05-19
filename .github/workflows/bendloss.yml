@@ -1,0 +1,29 @@
+name: Bend-loss check
+
+on: [push, pull_request]
+
+jobs:
+  bendloss:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r requirements.txt || true  # none yet
+      - name: Run curvature solver
+        run: |
+          LOSS=$(python curvature_solver.py --radius_mm 5 | grep -oE "[0-9.]+" | head -n1)
+          echo "Loss = $LOSS dB/m"
+          echo "LOSS=$LOSS" >> $GITHUB_ENV
+      - name: Assert bend-loss threshold
+        run: |
+          python - <<'PY'
+          import os
+          loss = float(os.environ['LOSS'])
+          if loss > 0.05:
+              raise RuntimeError(f'FAIL: loss={loss} dB/m')
+          print(f'PASS: loss={loss} dB/m')
+          PY 
